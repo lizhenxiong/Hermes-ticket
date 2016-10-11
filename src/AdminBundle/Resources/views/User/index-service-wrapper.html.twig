@@ -1,0 +1,67 @@
+<div style="min-height: 916px;" class="content-wrapper">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box" style="border-top:0px;border-radius:0px;">
+            <div class="box-header" style="margin-bottom:10px;">
+              <h3 class="box-title">客服列表</h3>
+            </div>
+        <form id="user-search-form" class="form-inline well well-sm" action="{{path('admin_user')}}" method="get" novalidate="" style="border-radius:0px;">
+
+        <div class="form-group">
+          <select id="keywordType" name="keywordType" class="form-control">
+            <option value="">--关键词类型--</option><option value="username">用户名</option><option value="name">姓名</option>
+            <option value="operatorNo">编号</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input id="keyword" name="keyword" class="form-control" value="" placeholder="关键词" type="text">
+        </div>
+          <select id="roles" name="roles" class="form-control">
+            <option value="">--权限--</option><option value="ROLE_ADMIN">管理员</option><option value="ROLE_DIRECTOR">客服主管</option>
+            <option value="ROLE_SERVICE">客服</option>
+          </select>
+        <button class="btn btn-primary">搜索</button>
+        </form>
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover js-table">
+                <thead >
+                  <tr>
+                  <th>用户名</th>
+                  <th>姓名</th>
+                  <th>编号</th>
+                  <th>当前工作量</th>
+                  <th>最大工作量</th>
+                  <th>邮箱</th>
+                  <th>手机号</th>
+                  <th>权限</th>
+                  <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                {% for user in users %}
+                <tr  id="{{user.id}}">
+                  <td>{{user.username}}</td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.operatorNo}}</td>
+                  <td>{{user.currentWorkload}}</td>
+                  <td>{{user.maxWorkload}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.phone}}</td>
+                  <td> 
+                    {% for role in user.roles %}
+                        {{ dict_text('userRoles', role) }}
+                    {% endfor %}
+                  <td>
+                    <button type="button" class="btn btn-sm btn-success js-update-btn" data-toggle="modal" data-id = "{{user.id}}" data-target="#myModal" data-url="{{ path('admin_service_detail',{id:user.id}) }}">查看</button>
+                </tr>
+                {% endfor %}
+              </tbody></table>
+              {{ admin_macro.paginator(paginator) }}
+            </div>
+          </div>
+        </div>
+        </div>
+<div class="modal" id="modal"></div>
+<script type="text/javascript" src="{{asset('assets/js/admin/list/list.js')}}"></script>
+
+    

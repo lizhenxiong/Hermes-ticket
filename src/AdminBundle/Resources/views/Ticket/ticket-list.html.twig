@@ -1,0 +1,16 @@
+{% extends "AdminBundle:Default:layout.html.twig" %}
+
+{% block title %}所有工单{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/libs/datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+  {% include 'AdminBundle:Ticket:ticket-list-wrapper.html.twig' %}
+{% endblock %}

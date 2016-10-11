@@ -1,0 +1,12 @@
+{% extends "AdminBundle:Default:layout.html.twig" %}
+
+{% block title %}后台{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/libs/validator/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/validator/messages_cn.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+  {% include 'AdminBundle:User:index-wrapper.html.twig' %}
+{% endblock %}

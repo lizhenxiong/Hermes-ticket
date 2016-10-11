@@ -1,0 +1,19 @@
+<li>
+  <i class="fa fa-user bg-blue"></i>
+
+  <div class="timeline-item">
+      <div class="callout callout-info">
+          <h4>工单信息</h4>
+          <p>工单已被客服
+            {% set user = data('User', {userId:ticket.operatorId}) %}{{ user.operatorNo }}接手</p>
+      </div>
+    {% if loop.last == 1 %}
+      {% if role == 'customer' %}
+        {% include 'WebBundle:TimeLine:customer-timeline-footer.html.twig' %}
+      {% endif %}
+      {% if role == 'service' %}
+        {% include 'WebBundle:TimeLine:operator-timeline-footer.html.twig' %}
+      {% endif %}
+    {% endif %}
+  </div>
+</li>

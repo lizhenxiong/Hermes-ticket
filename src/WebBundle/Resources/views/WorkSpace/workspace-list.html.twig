@@ -1,0 +1,18 @@
+{% extends "WebBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+  <style>
+    h5 {
+      margin: 0px;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/js/web/operator/workspace.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+    {% include 'WebBundle:WorkSpace:workspace-wrapper.html.twig' %}
+{% endblock %}

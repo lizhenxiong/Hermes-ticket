@@ -1,0 +1,42 @@
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar" style="height: auto;">
+
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu">
+        {% if 'ROLE_USER' in app.user.roles|default() %}
+          <ul class="sidebar-menu">
+            <li class="treeview">
+              <a href="{{ path('customer_ticket_list',{userId:user.id}) }}">
+                <i class="fa fa-dashboard"></i> <span>所有工单</span>
+              </a>
+            </li>
+          </ul>
+        {% endif %}
+        {% if 'ROLE_SERVICE' in app.user.roles|default() %}
+          <ul class="sidebar-menu">
+            <li class="treeview">
+              <a href="{{ path('workspace', {userId:user.id}) }}">
+                <i class="fa fa-dashboard"></i> <span>我的工作台</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="sidebar-menu">
+            <li class="treeview">
+              <a href="{{ path('ticket_processed_list',{id:user.id}) }}">
+                <i class="fa fa-dashboard"></i> <span>已处理工单</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="sidebar-menu">
+            <li class="treeview">
+              <a href="{{ path('ticket_list', {userId:user.id}) }}">
+                <i class="fa fa-dashboard"></i> <span>所有工单</span>
+              </a>
+            </li>
+          </ul>
+        {% endif %}
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>

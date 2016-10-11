@@ -1,0 +1,30 @@
+<div class="timeline-footer">
+    <div class="box box-default collapsed-box">
+          {% if ticket.status != 'closed' %}
+            <a class="btn btn-primary btn-xs" data-widget="collapse">回复</a>
+          {% endif %}
+      <div class="box-body" style="display: none;">
+        <div class="box box-primary">
+            <form id="operator-detail" method="POST">
+              <div class="box-body">
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="about"></textarea>
+                  <input type="text" class="hidden" name="ticketId" value="{{ ticket.id }}">
+                  <input type="text" class="hidden" name="role" value="service">
+                </div>
+                <div class="form-group img-inputs">
+                </div>
+                <div class="form-group">
+                  <div id="upload"></div>
+                  <p class="help-block">可上传5张图片每个附件大小不得超过2M。附件支持的格式有：'jpg', 'bmp', 'png', 'gif','txt','rar','zip','doc','docx','ini','conf','eml'</p>
+                </div>
+              </div>
+              {{ form_csrf_token() }}
+              <div class="box-footer">
+                <button id="operator-reply" data-url="{{ path('operator_ticket_reply', {id:ticket.id}) }}" class="btn btn-primary">提交</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+</div>

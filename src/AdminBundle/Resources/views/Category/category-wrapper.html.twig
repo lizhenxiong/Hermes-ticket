@@ -1,0 +1,31 @@
+<div style="min-height: 916px;" class="content-wrapper">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box" style="border-top:0px;border-radius:0px;">
+        <div class="box-header" style="margin-bottom:10px;">
+          <h3 class="box-title">问题类型</h3>
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 90px;">
+              <span><button type="button" class="btn btn-success js-add-btn" data-toggle="modal" data-target="#myModal" data-url="{{ path('admin_category_create') }}">添加类型</button></span>
+            </div>
+          </div>
+        </div>
+        <div class="box-body table-responsive no-padding">
+          <ul class="list-table" style="margin-bottom: 0;width: 1000px;">
+            <li class="th">
+              <div class="row">
+                <div class="td col-md-7">类型名</div>
+                <div class="td col-md-1">优先级</div>
+                <div class="td col-md-2">滞留时间(分钟)</div>
+                <div class="td col-md-2">操作</div>
+              </div>
+            </li>
+            {% include 'AdminBundle:Category:tbody.html.twig' %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modal"></div>
+<script type="text/javascript" src="{{asset('assets/js/admin/category/category.js')}}"></script>

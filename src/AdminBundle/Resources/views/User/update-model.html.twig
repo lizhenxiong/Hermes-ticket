@@ -1,0 +1,119 @@
+    <!-- 模态框（Modal） -->
+    <div tabindex="-1" role="dialog" 
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" 
+              data-dismiss="modal" aria-hidden="true">
+              &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              编辑信息
+            </h4>
+          </div>
+          <div class="modal-body">
+            <form  class="form-horizontal" action="{{ path('admin_user_update',{id:user.id}) }}" method="post" accept-charset="utf-8" id="updateForm">
+
+              <input type="text" style="visibility:hidden" name="id" value={{user.id}}><br/>
+
+              <div class="form-group">
+                <label for="username" class="col-sm-2 control-label" >用户名</label>
+                <div class="col-sm-10">
+                  <input name="username" type="text" readonly="readonly" class="form-control" id="username" 
+                  value={{user.username}}>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-10">
+                  <input name="name" type="text" class="form-control" id="name" 
+                 value={{user.name}}>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="operatorNo" class="col-sm-2 control-label">编号</label>
+                <div class="col-sm-10">
+                  <input name="operatorNo" type="text" readonly="readonly" class="form-control" id="operatorNo" 
+                  value={{user.operatorNo}}>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="currentWorkload" class="col-sm-2 control-label">当前工作量</label>
+                <div class="col-sm-10">
+                  <input name="currentWorkload" type="text" readonly="readonly" class="form-control" id="currentWorkload" 
+                  value={{user.currentWorkload}}>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="maxWorkload" class="col-sm-2 control-label">最大工作量</label>
+                <div class="col-sm-10">
+                  <input name="maxWorkload" type="text" class="form-control" id="maxWorkload" 
+                  value={{user.maxWorkload}}>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="col-sm-2 control-label">邮箱</label>
+                <div class="col-sm-10">
+                  <input name="email" type="text" class="form-control" id="email" 
+                  value={{user.email}}>
+                </div>
+              </div>
+
+               <div class="form-group">
+                <label for="phone" class="col-sm-2 control-label">手机</label>
+                <div class="col-sm-10">
+                  <input name="phone" type="text" class="form-control" id="phone" 
+                  value={{user.phone}}>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="roles" class="col-sm-2 control-label">权限</label>
+                <div class="col-sm-10">
+
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="roles[]" id="roles" 
+                    value="ROLE_USER"
+                  {% if "ROLE_USER" in user.roles %} checked='checked'{% endif %}> 用户
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="roles[]" id="roles" 
+                    value="ROLE_SERVICE"
+                  {% if "ROLE_SERVICE" in user.roles %} checked='checked'{% endif %}> 客服
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="roles[]" id="roles" 
+                    value="ROLE_DIRECTOR"
+                    {% if "ROLE_DIRECTOR" in user.roles %}
+                      checked='checked'
+                    {% endif %}> 客服主管
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" name="roles[]" id="roles" 
+                    value="ROLE_ADMIN"
+                     {% if "ROLE_ADMIN" in user.roles %} checked='checked' {% endif %}> 管理员
+                  </label>
+
+                </div>
+              </div>            
+          </div>
+          {{ form_csrf_token() }}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" 
+            data-dismiss="modal">取消
+            </button>
+            <button id="update" data-id="{{user.id}}" type="button" class="btn btn-primary">
+            保存
+            </button>
+          </div>
+          </form>
+        </div><!-- /.modal-content -->
+      </div>
+    </div>
+<script src="{{ asset('assets/js/admin/list/update.js') }}"></script>
+    <!-- /.modal -->

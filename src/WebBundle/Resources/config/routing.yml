@@ -1,0 +1,147 @@
+homepage:
+    path: /
+    defaults: { _controller: WebBundle:Default:index }
+
+login:
+    path: /login
+    defaults: { _controller: WebBundle:Login:login }
+
+login_check:
+    path: /login_check
+    defaults: { _controller: WebBundle:Login:loginCheck }
+
+logout:
+    path: /logout
+    defaults: { _controller: WebBundle:Login:logout }
+
+register:
+    path: /register
+    defaults: { _controller: WebBundle:Login:register }
+
+customer_ticket_list:
+    path: /customer/ticket/{userId}/list
+    defaults: { _controller: WebBundle:Ticket:list }
+
+ticket_add:
+    path: /ticket/{userId}/add
+    defaults: { _controller: WebBundle:Ticket:add }
+
+customer_ticket_detail:
+    path: /customer/ticket/{id}/detail
+    defaults: { _controller: WebBundle:Ticket:customerDetail }
+    
+customer_ticket_complaint:
+    path: /ticket/{id}/complaint
+    defaults: { _controller: WebBundle:Ticket:complaint }
+
+customer_ticket_review:
+    path: /ticket/{id}/evaluate
+    defaults: { _controller: WebBundle:Ticket:review }
+
+customer_ticket_supplement:
+    path: /ticket/{id}/supplement
+    defaults: { _controller: WebBundle:Ticket:supplement }
+
+customer_ticket_asked:
+    path: /ticket/{id}/asked
+    defaults: { _controller: WebBundle:Ticket:asked }
+
+customer_ticket_confirm:
+    path: /ticket/{id}/confirm
+    defaults: { _controller: WebBundle:Ticket:confirm }
+
+customer_ticket_urge:
+    path: /ticket/{id}/urge
+    defaults: { _controller: WebBundle:Ticket:reminder }
+
+customer_ticket_close:
+    path: /ticket/{id}/close
+    defaults: { _controller: WebBundle:Ticket:close }
+
+operator_ticket_detail:
+    path: /operator/ticket/{id}/detail
+    defaults: { _controller: WebBundle:Ticket:operatorDetail }
+
+operator_ticket_reply:
+    path: /operator/ticket/{id}/reply
+    defaults: { _controller: WebBundle:Ticket:reply }
+
+operator_ticket_autoReply:
+    path: /operator/ticket/{ticketId}/faq/{faqId}/autoReply
+    defaults: { _controller: WebBundle:Ticket:autoReply }
+
+workspace:
+    path: /{userId}/workspace
+    defaults: { _controller: WebBundle:WorkSpace:index }
+
+workspace_assigned_ticket:
+    path: /workspace/{userId}/assigned/ticket
+    defaults: { _controller: WebBundle:WorkSpace:renderAssignedTicket }
+
+workspace_unassigned_ticket:
+    path: /workspace/unassigned/ticket
+    defaults: { _controller: WebBundle:WorkSpace:renderUnassignedTicket }
+
+workspace_delayed_ticket:
+    path: /workspace/delayed/ticket
+    defaults: { _controller: WebBundle:WorkSpace:renderDelayedTicket }
+
+ticket_transfer:
+    path: /workspace/ticket/transfer
+    defaults: { _controller: WebBundle:WorkSpace:transferTickets }
+
+ticket_transfer_operatorNo_check:
+    path: /workspace/ticket/transfer/operatorNo/check
+    defaults: { _controller: WebBundle:WorkSpace:checkOperatorNo }
+
+ticket_assigned_list:
+    path: /workspace/ticket/{userId}/assigned/list
+    defaults: { _controller: WebBundle:WorkSpace:assignedList }
+
+ticket_unassigned_list:
+    path: /workspace/ticket/unassigned/list
+    defaults: { _controller: WebBundle:WorkSpace:unassignedList }
+
+ticket_receive:
+    path: /workspace/ticket/{id}/receive
+    defaults: { _controller: WebBundle:WorkSpace:receiveTicket }
+
+ticket_delayed_list:
+    path: /workspace/ticket/delayed/list
+    defaults: { _controller: WebBundle:WorkSpace:delayedList }
+
+ticket_list:
+    path: /workspace/ticket/{userId}/list
+    defaults: { _controller: WebBundle:WorkSpace:list }
+
+same_category_ticket:
+    path: /ticket/{category}
+    defaults: { _controller: WebBundle:Ticket:sameCategoryList }
+
+other_ticket:
+    path: /other/ticket/{userId}
+    defaults: { _controller: WebBundle:Ticket:otherList }
+
+operator_status_update:
+    path: /workspace/status/{id}/update
+    defaults: { _controller: WebBundle:WorkSpace:updateStatus }
+
+file_upload:
+    path: /file/upload
+    defaults: { _controller: WebBundle:File:upload }
+
+notification:
+    path: /notification
+    defaults: { _controller: WebBundle:Notification:index }
+
+notification_list:
+    path: /notificatin/list
+    defaults: { _controller: WebBundle:Notification:list }
+
+notifiction_show:
+    path: /notificatin/show
+    defaults: { _controller: WebBundle:Notification:show }
+
+ticket_processed_list:
+    path: /ticket/{id}/processed/list
+    defaults: { _controller: WebBundle:WorkSpace:processedList }

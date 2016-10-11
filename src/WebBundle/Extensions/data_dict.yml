@@ -1,0 +1,27 @@
+ticketStatus:
+    waiting: 待客服接手
+    processing: 正在处理中
+    appraising: 待用户评价
+    tickling: 待用户反馈
+    confirmed:　确认解决
+    closed: 关闭
+
+ticketPriority:
+    5: 立即
+    4: 紧急
+    3: 高
+    2: 正常
+    1: 低
+
+userRoles:
+    ROLE_ADMIN: 管理员
+    ROLE_DIRECTOR: 客服主管
+    ROLE_SERVICE: 客服
+    ROLE_USER: 用户
+
+'ticketPriority:html':
+    5: 立即
+    4: 紧急
+    3: 高
+    2: 正常
+    1: 低

@@ -1,0 +1,70 @@
+  <header class="main-header">
+    <a href="{{ path('homepage') }}" class="logo">
+      <span class="logo-mini"><b>H</b>TI</span>
+      <span class="logo-lg"><b>HERMES</b> TICKET</span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown notifications-menu" >
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notification-list" data-url="{{ path('notification_list') }}" >
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning notification-count" data-url="{{path('notification')}}"></span>
+            </a>
+            <ul class="dropdown-menu show-notifiaction" >
+              <li class="header">通知</li>
+              <li>
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;">
+                  <ul id="notification-part-list" class="menu" style="overflow: hidden; width: 100%; height: 200px;">
+                    
+                  </ul>
+                  <div class="slimScrollBar" style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; background: rgb(0, 0, 0);">
+                    
+                  </div>
+                  <div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);">
+                    
+                  </div>
+                </div>
+              </li>
+              <li class="footer"><a href="{{path('notifiction_show')}}">更多</a></li>
+            </ul>
+          </li>
+          <li class="dropdown tasks-menu"></li>
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="{{ asset('assets/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{ app.user.username|default() }}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="{{ asset('assets/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+              </li>
+              <li class="user-footer">
+                {% if not app.user %}
+                  <div class="pull-right">
+                    <a href="{{ path('login') }}" class="btn btn-default btn-flat">登录</a>
+                  </div>
+                  {% else %}
+                  <div class="pull-left">
+                    <a href="{{ path('homepage') }}" class="btn btn-default btn-flat">回首页</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="{{ path('logout') }}" class="btn btn-default btn-flat">退出</a>
+                  </div>
+                {% endif %}
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>

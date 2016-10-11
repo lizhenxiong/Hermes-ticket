@@ -1,0 +1,88 @@
+admin:
+    path: /
+    defaults: { _controller: AdminBundle:Default:index }
+
+admin_user:
+    path: /user
+    defaults: { _controller: AdminBundle:User:index }
+
+admin_user_update:
+    path: /user/{id}/update
+    defaults: { _controller: AdminBundle:User:update }
+
+admin_user_delete:
+    path: /user/{id}/delete
+    defaults: { _controller: AdminBundle:User:delete }
+
+admin_service:
+    path: /user/service/list
+    defaults: { _controller: AdminBundle:User:serviceList }
+
+admin_service_detail:
+    path: /user/service/{id}/detail
+    defaults: { _controller: AdminBundle:User:serviceDetail }
+
+admin_ticket_list:
+    path: /ticket
+    defaults: { _controller: AdminBundle:Ticket:index }
+
+admin_ticket_priority_change:
+    path: /ticket/priority/{id}/change
+    defaults: { _controller: AdminBundle:Ticket:changePriority }
+
+admin_faq_list:
+    path: /faq/list
+    defaults: { _controller: AdminBundle:Faq:list }
+
+admin_faq_create:
+    path: /faq/create
+    defaults: { _controller: AdminBundle:Faq:create }
+    
+admin_faq_create_fields_check:
+    path: /faq/create/fields/check
+    defaults: { _controller: AdminBundle:Faq:createFieldsCheck }
+    
+admin_faq_update:
+    path: /faq/{id}/update
+    defaults: { _controller: AdminBundle:Faq:update }
+
+admin_faq_update_fields_check:
+    path: /faq/update/fields/check
+    defaults: { _controller: AdminBundle:Faq:updateFieldsCheck }
+
+admin_faq_delete:
+    path: /faq/{id}/delete
+    defaults: { _controller: AdminBundle:Faq:delete }
+
+admin_category_list:
+    path: /category/list
+    defaults: { _controller: AdminBundle:Category:list }
+
+admin_category_create:
+    path: /category/create
+    defaults: { _controller: AdminBundle:Category:create }
+
+admin_category_create_fields_check:
+    path: /category/create/fields/check
+    defaults: { _controller: AdminBundle:Category:createFieldsCheck }
+
+admin_category_update:
+    path: /category/{id}/update
+    defaults: { _controller: AdminBundle:Category:update }
+
+admin_category_update_fields_check:
+    path: /category/update/fields/check
+    defaults: { _controller: AdminBundle:Category:updateFieldsCheck }
+
+admin_category_delete:
+    path: /category/{id}/delete
+    defaults: { _controller: AdminBundle:Category:delete }
+
+admin_category_sort:
+    path: /category/sort
+    defaults: { _controller: AdminBundle:Category:sort }
+    methods: [POST]
+
+admin_ticket_distribute:
+    path: /ticket/distribute
+    defaults: { _controller: AdminBundle:Ticket:distribute }

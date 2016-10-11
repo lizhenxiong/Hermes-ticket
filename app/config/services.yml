@@ -1,0 +1,33 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+    app.current_user.class: Hermes\WebBundle\Security\CurrentUser
+    app.csrf.token_id.default: app
+    app.csrf.token_form_name: _csrf_token
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    biz:
+        class: Hermes\Biz\BizKernel
+        arguments: ["%biz%", "@service_container"]
+
+    app_asset_helper.twig_extension:
+        class: Hermes\WebBundle\Twig\Extension\HelperExtension
+        arguments:    ['@service_container']
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    app.user_provider:
+        class: Hermes\WebBundle\Security\UserProvider
+        arguments: ["@biz"]
+
+    app.csrf_token_validate_listener:
+        class: Hermes\WebBundle\Listener\CsrfTokenValidateListener
+        arguments:    ['@service_container']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority:255 }

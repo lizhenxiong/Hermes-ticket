@@ -1,0 +1,18 @@
+
+  <td>{{user.username}}</td>
+  <td>{{user.name}}</td>
+  <td>{{user.operatorNo}}</td>
+  <td>{{user.currentWorkload}}</td>
+  <td>{{user.maxWorkload}}</td>
+  <td>{{user.email}}</td>
+  <td>{{user.phone}}</td>
+  <td> 
+    {% for role in user.roles %}
+      {{ dict_text('userRoles', role) }}
+    {% endfor %}
+  </td>
+  <td>
+    <button type="button" class="btn btn-sm btn-success js-update-btn" data-toggle="modal" data-target="#myModal" data-id = "{{user.id}}" data-url="{{ path('admin_user_update',{id:user.id}) }}">编辑</button>
+    <button type="button" class="btn btn-sm btn-success js-delete-btn" data-id = "{{user.id}}" data-toggle="modal" data-target="#myModal" data-url="{{ path('admin_user_delete',{id:user.id})}}">删除</button>
+ </td>
+ <script src="{{ asset('assets/js/admin/list/update.js') }}"></script>

@@ -1,0 +1,18 @@
+<li>
+  <i class="fa fa-comments bg-yellow"></i>
+
+  <div class="timeline-item">
+      <div class="callout callout-success">
+          <h4>用户评价</h4>
+          <p>{{ ticketItem.about }}</p>
+      </div>
+    {% if loop.last == 1 %}
+      {% if role == 'customer' %}
+        {% include 'WebBundle:TimeLine:customer-timeline-footer.html.twig' %}
+      {% endif %}
+      {% if role == 'service' %}
+        {% include 'WebBundle:TimeLine:operator-timeline-footer.html.twig' %}
+      {% endif %}
+    {% endif %}
+  </div>
+</li>

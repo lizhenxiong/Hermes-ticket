@@ -1,0 +1,38 @@
+{% extends "AdminBundle:Default:layout.html.twig" %}
+
+{% block title %}后台{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/viewer/css/viewer.min.css') }}">
+
+
+  <style>
+    
+    .attachment-preview {
+      margin-top: 0px;
+      width: 300px;
+      height: 40px;
+    }
+
+    .attachment-preview li {
+      display: inline-block; 
+      width: 40px; 
+      margin-left: 1%; 
+      padding-top: 1%;
+    }
+    .attachment-preview li img { 
+      width: 100%;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/libs/validator/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/validator/messages_cn.js') }}"></script>
+  <script src="{{ asset('assets/libs/viewer/js/viewer.min.js') }}"></script>
+  <script src="{{ asset('assets/js/admin/faq/list.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+  {% include 'AdminBundle:Faq:faq-wrapper.html.twig' %}
+{% endblock %}

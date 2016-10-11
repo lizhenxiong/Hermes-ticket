@@ -1,0 +1,76 @@
+<div class="content-wrapper" style="min-height: 901px;">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="">         
+        <div class="box-header">
+          <a href="{{ path('admin_faq_list') }}" class="btn btn-success " style="margin-left:8px;"><span class="fa fa-fw fa-mail-reply"></span>返回</a>
+          <hr>
+        </div>
+        <div class="box-body">
+          <div class="">
+            <div class="box-header" style=" background-color:white;border-left:5px solid rgb(109,119,129); margin-top:-40px;">
+              <h5>添加常用问题模板</h5>
+            </div>
+            <form id="createFaqForm" action="{{ path('admin_faq_create') }}"  method="post">
+              <div class="box-body" style=" border:1px solid white;border-bottom:0px;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="col-md-2 " ><p class="pull-right">问题分类:</p></div>
+                    <div class="col-md-10">
+                      <select name="category" class="form-control" >
+                        <option value="">--问题分类--</option>
+                        {% for category in categorys %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin-top:30px;">
+                  <div class="col-md-12">
+                    <div class="col-md-2"><p class="pull-right">问题标题:</p></div>
+                    <div class="col-md-10">
+                      <input type="text" id="question" name="question" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <div class="row" style="margin-top:30px;">
+                  <div class="col-md-12">
+                    <div class="col-md-2"><p class="pull-right">答复信息:</p></div>
+                    <div class="col-md-10">
+                      <textarea name="answer" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                  </div>
+                </div>
+                 <div class="row" style="margin-top:30px;">
+                  <div class="col-md-12">
+                    <div class="col-md-2">
+                      <p class="pull-right">相关附件:</p>
+                    </div>
+                     <div class="img-inputs">
+                     </div>
+                    <div class="col-md-10">
+                      <div class="form-group">
+                        <div id="upload"></div>
+                        <p class="help-block">可上传5张图片每个附件大小不得超过2M。附件支持的格式有：'jpg', 'bmp', 'png', 'gif','txt','rar','zip','doc','docx','ini','conf','eml'</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {{ form_csrf_token() }}
+              <div class="body-footer" style="margin-top:50px;">
+                <div class="col-md-offset-11">
+                  <button class="btn btn-primary" type="submit">提交</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ asset('assets/libs/validator/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/libs/validator/messages_cn.js') }}"></script>
+<script src="{{ asset('assets/js/admin/faq/validate-create-faq-form.js') }}"></script>

@@ -1,0 +1,9 @@
+  <td>{{category.id}}</td>
+  <td>{{ dict_text('ticketPriority:html', category.priority) }}</td>
+  <td>{{category.name}}</td>
+  <td>{{category.delayedTime}}</td>
+  <td>
+    <button type="button" class="btn btn-sm btn-success js-update-btn" data-toggle="modal" data-id = "{{category.id}}" data-target="#myModal" data-url="{{ path('admin_category_update',{id:category.id}) }}">编辑</button>
+    {# <button type="button" class="btn btn-sm btn-danger js-delete-btn"  data-url="{{ path('admin_category_delete', {id:category.id})}}" data-id="{{category.id}}">删除</button> #}
+    <button type="button" class="btn btn-sm btn-success add-child-btn" data-toggle="modal" data-id = "{{category.id}}" data-target="#myModal" data-url="{{ path('admin_category_create', {parentId: category.id}) }}">添加子分类</button>
+  </td>

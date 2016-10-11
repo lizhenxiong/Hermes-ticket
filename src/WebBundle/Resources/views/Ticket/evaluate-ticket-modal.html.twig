@@ -1,0 +1,68 @@
+<!-- Modal evaluation -->
+<div tabindex="-1" role="dialog" 
+      aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-edit"></i>评价</h4>
+      </div>
+      <form id="complaintform" action="{{ path('customer_ticket_review', {id:ticket.id}) }}" method="post">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="box box-widget">
+              <div class="widget-user-header">
+                <div class="widget-user-image">
+                </div>
+                <h4><span class="fa fa-bullhorn"></span>工单评分</h4>
+                <div class="info-box bg-green">
+                  <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+                  <div class="info-box-content">
+                  <span class="info-box-text">工单编号</span>
+                  <span class="info-box-number">{{ ticket.ticketNo }}</span>
+                  <div class="progress">
+                  <div class="progress-bar" style="width: 100%"></div>
+                  </div>
+                  <span class="progress-description">
+                      <span class="info-box-text">工单标题:<label>{{ ticket.title }}</label></span>
+                  </span>
+            </div>
+          </div>
+              </div>
+              <div class="box-footer no-padding">
+                <legend>满意度:</legend>
+                <fieldset class="starability-growRotate"> 
+                  <input type="radio" id="rate5-4" name="satisfaction" value="5" />
+                  <label for="rate5-4" title="非常满意"></label>
+
+                  <input type="radio" id="rate4-4" name="satisfaction" value="4" />
+                  <label for="rate4-4" title="满意"></label>
+
+                  <input type="radio" id="rate3-4" name="satisfaction" value="3" />
+                  <label for="rate3-4" title="一般"></label>
+
+                  <input type="radio" id="rate2-4" name="satisfaction" value="2" />
+                  <label for="rate2-4" title="不满意"></label>
+
+                  <input type="radio" id="rate1-4" name="satisfaction" value="1" />
+                  <label for="rate1-4" title="非常不满意"></label>
+                </fieldset>
+                <ul class="nav nav-stacked">
+                  <li><h4><i class="fa fa-fw fa-commenting-o"></i>评价内容</h4><textarea class="form-control" name="about" id="evaluate" style="resize:none;" cols="60" rows="8"></textarea></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+      {{ form_csrf_token() }}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" class="btn btn-primary">提交</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal end -->

@@ -1,0 +1,44 @@
+<li>
+  {% if ticketItem.role == 'service' %}
+    <i class="fa fa-user bg-blue"></i>
+  {% else %}
+    <i class="fa fa-comments bg-yellow"></i>
+  {% endif %}
+  
+  <div class="timeline-item">
+    <span class="time"><i class="fa fa-clock-o"></i>{{ ticketItem.created|date('H:i') }}</span>
+
+    <h3 class="timeline-header">{% if ticketItem.role == 'service' %}我{% else %}客户{% endif %}</h3>
+
+    <div class="timeline-body">{{ ticketItem.about }}
+      <p>
+        <ul id="attachment-preview-{{ticketItem.id}}" class="attachment-preview">
+          {% if ticketItem.attachment1 %}
+            <li><img data-original="{{ asset(ticketItem.attachment1) }}" src="{{ asset(ticketItem.attachment1) }}"/></li>
+          {% endif %}
+          {% if ticketItem.attachment2 %}
+            <li><img data-original="{{ asset(ticketItem.attachment2) }}" src="{{ asset(ticketItem.attachment2) }}"/></li>
+          {% endif %}
+          {% if ticketItem.attachment3 %}
+            <li><img data-original="{{ asset(ticketItem.attachment3) }}" src="{{ asset(ticketItem.attachment3) }}"/></li>
+          {% endif %}
+          {% if ticketItem.attachment4 %}
+            <li><img data-original="{{ asset(ticketItem.attachment4) }}" src="{{ asset(ticketItem.attachment4) }}"/></li>
+          {% endif %}
+          {% if ticketItem.attachment5 %}
+            <li><img data-original="{{ asset(ticketItem.attachment5) }}" src="{{ asset(ticketItem.attachment5) }}"/></li>
+          {% endif %}
+        </ul>
+      </p>
+    </div>
+    
+    {% if loop.last == 1 %}
+      {% if role == 'customer' %}
+        {% include 'WebBundle:TimeLine:customer-timeline-footer.html.twig' %}
+      {% endif %}
+      {% if role == 'service' %}
+        {% include 'WebBundle:TimeLine:operator-timeline-footer.html.twig' %}
+      {% endif %}
+    {% endif %}
+  </div>
+</li>

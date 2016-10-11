@@ -1,0 +1,43 @@
+<li id="category-table-body" data-sort-url="{{ path('admin_category_sort') }}">
+    {% if categories is not empty %}
+        {{ _self.showCategoryTree(categories) }}
+    {% else %}
+        <div class="row empty">{{'暂无分类记录'|trans}}</div>
+    {% endif %}
+</li>
+
+<script src="{{asset('assets/js/admin/category/tbody.js')}}"></script>
+
+{% macro showCategoryTree(categories) %}
+    <ul class="list-table sortable-list" data-group-id="{{ categories[0]['parentId'] }}">
+        {% for category in categories %}
+            {% set isParent = category.children|default(null) is not empty %}
+            <li id="{{ category.id }}" class="tr" data-name="{{ category.name }}" data-id="{{ category.id }}" data-parent-id="{{ category.parentId }}" style="display: block">
+                <div class="row row-collapse">
+                    <div class="td col-md-7 name sort-handle" style="padding-left: {{ 24 * (category.depth - 1 ) }}px; overflow: hidden">
+                        {% if isParent %}
+                            <i class="list-table-tree-icon fa fa-caret-down"></i>
+                        {% else %}
+                            <i class="list-table-tree-icon"></i>
+                        {% endif %}
+                        {{ category.name }}
+                    </div>
+                    <div class="td col-md-1 priority">
+                        {{ category.priority }}
+                    </div>
+                    <div class="td col-md-2 delayedTime">
+                        {{ category.delayedTime / 60 }}
+                    </div>
+                    <div class="td col-md-2 operation">
+                      <button type="button" class="btn btn-sm btn-success js-update-btn" data-toggle="modal" data-id = "{{category.id}}" data-target="#myModal" data-url="{{ path('admin_category_update',{id:category.id}) }}">编辑</button>
+                      {# <button type="button" class="btn btn-sm btn-danger js-delete-btn"  data-url="{{ path('admin_category_delete', {id:category.id})}}" data-id="{{category.id}}">删除</button> #}
+                      <button type="button" class="btn btn-sm btn-success add-child-btn" data-toggle="modal" data-id = "{{category.id}}" data-target="#myModal" data-url="{{ path('admin_category_create', {parentId: category.id}) }}">添加子分类</button>
+                    </div>
+                </div>
+                {% if isParent %}
+                    {{ _self.showCategoryTree(category.children) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

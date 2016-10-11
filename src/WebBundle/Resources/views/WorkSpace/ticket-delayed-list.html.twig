@@ -1,0 +1,16 @@
+{% extends "WebBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/js/web/operator/transfer.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+    {% include 'WebBundle:WorkSpace:ticket-delayed-wrapper.html.twig' %}
+{% endblock %}

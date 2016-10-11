@@ -1,0 +1,84 @@
+<div class="content-wrapper" style="min-height: 901px;">
+  <div class="row">
+        <div class="col-xs-12">
+          <div class="">         
+            <div class="box-header">
+              <h5 style="padding-left:8px; display:inline-block; border-left:2px solid rgb(0,166,90);">提交工单</h5>
+              <a href="{{ path('customer_ticket_list',{userId:user.id}) }}" class="btn btn-default btn-xs" style="margin-left:8px;"><span class="fa fa-fw fa-mail-reply"></span>返回</a>
+              <hr>
+            </div>
+            <div class="box-body">
+              <div class="">
+                <div class="box-header" style=" background-color:white;border-left:5px solid rgb(109,119,129); margin-top:-40px;">
+                  <h5>提交工单</h5>
+                </div>
+                <form action="{{ path('ticket_add',{userId:1}) }}"  method="post" id="addticketform">
+                <div class="box-body" style=" border:1px solid white;border-bottom:0px;">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="col-md-2 " ><p class="pull-right">问题分类:</p></div>
+                      <div class="col-md-10">
+                        <select name="category" id="" class="form-control">
+                          <option value="">--问题分类--</option>
+                          {% for category in categorys %}
+                          <option value="{{ category.id }}">{{ category.name }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top:30px;">
+                    <div class="col-md-12">
+                      <div class="col-md-2"><p class="pull-right">标题:</p></div>
+                      <div class="col-md-10">
+                        <input type="text" name="title" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top:30px;">
+                    <div class="col-md-12">
+                      <div class="col-md-2"><p class="pull-right">添加描述:</p></div>
+                      <div class="col-md-10">
+                        <textarea name="about" class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="row" style="margin-top:30px;">
+                     <div class="col-md-2 img-inputs">
+                     </div>
+                     <div class="col-md-10">
+                      <div class="form-group">
+                        <div id="upload"></div>
+                        <p class="help-block">可上传5张图片每个附件大小不得超过2M。附件支持的格式有：'jpg', 'bmp', 'png', 'gif','txt','rar','zip','doc','docx','ini','conf','eml'</p>
+                      </div>
+                     </div>
+                  </div>
+                  <div class="row" style="margin-top:30px;">
+                    <div class="col-md-12">
+                      <div class="col-md-2"><p class="pull-right">电子邮箱:</p></div>
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" id="email" name="email" value="{{ user.email }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top:30px;">
+                    <div class="col-md-12">
+                      <div class="col-md-2"><p class="pull-right">手机号:</p></div>
+                      <div class="col-md-10">
+                        <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {{ form_csrf_token() }}
+                <div class="body-footer" style="margin-top:50px;">
+                  <div class="col-md-offset-11">
+                    <button class="btn btn-primary" type="submit">提交</button>
+                  </div>
+                </div>
+                </form>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>

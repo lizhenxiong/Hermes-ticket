@@ -1,0 +1,22 @@
+<td><input id="{{ticket.id}}" type="checkbox" autocomplete="off" name="checkboxId" value="{{ticket.id}}"></td>
+<td>{{ ticket.ticketNo }}</td>
+<td>{{ ticket.title }}</td>
+<td>{% set category = data('Category', {id:ticket.category}) %}{{ category.name }}</td>
+<td>{% set user = data('User', {userId:ticket.userId}) %}{{  user.username }}</td>
+<td>{{ ticket.created|date('Y-m-d H:i:s') }}</td>
+<td>{{ dict_text('ticketPriority:html', ticket.priority) }}</td>
+<td>{{ dict_text('ticketStatus', ticket.status) }}</td>
+<td>{% if ticket.operatorId != null %}{% set service = data('User', {userId:ticket.operatorId}) %}{{  service.username }}{% endif %}</td>
+<td>
+  <div class="btn-group">
+    <a href="{{ path('operator_ticket_detail', {id:ticket.id}) }}"class="btn btn-default btn-sm">查看</a>
+    <a type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a class="change-priority" data-toggle="modal" data-url="{{ path('admin_ticket_priority_change', {id:ticket.id}) }}">修改优先级</a>
+      </li>
+    </ul>
+  </div>
+</td>

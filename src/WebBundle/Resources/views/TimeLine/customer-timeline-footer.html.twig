@@ -1,0 +1,56 @@
+<div class="timeline-footer">
+    <div class="box box-default collapsed-box">
+          {% if ticket.status == 'waiting' %}
+            {% if ticket.reminder == false %}
+              <span class="btn btn-warning btn-xs ticket-urge" data-url="{{ path('customer_ticket_urge', {id:ticket.id}) }}">催单</span>
+            {% endif %}
+            <span class="btn btn-primary btn-xs" data-widget="collapse">补充说明</span>
+          {% elseif ticket.status == 'processing' %}
+            {% if ticket.reminder == false %}
+              <span class="btn btn-warning btn-xs ticket-urge" data-url="{{ path('customer_ticket_urge', {id:ticket.id}) }}">催单</span>
+            {% endif %}
+            <span class="btn btn-primary btn-xs" data-widget="collapse">补充说明</span>
+          {% elseif ticket.status == 'tickling' %}
+            <span class="btn btn-success btn-xs ticket-confirm" data-url="{{ path('customer_ticket_confirm', {id:ticket.id}) }}">已解决</span>
+            <span class="btn btn-primary btn-xs ticket-asked" data-widget="collapse">继续追问</span>
+          {% elseif ticket.status == 'appraising' %}
+            <span class="btn btn-success btn-xs" data-url="{{ path('customer_ticket_confirm', {id:ticket.id}) }}">已解决</span>
+          {% elseif ticket.status == 'confirmed' %}
+          {% elseif ticket.status == 'closed' %}
+          {% endif %}
+      <div class="box-body" style="display: none;">
+        <div class="box box-primary">
+            <form role="form" method="POST">
+              <div class="box-body">
+                <div class="form-group">
+                  <textarea class="form-control" rows="3" name="about"></textarea>
+                  <input type="text" class="hidden" name="ticketId" value="{{ ticket.id }}">
+                  <input type="text" class="hidden" name="role" value="customer">
+                </div>
+                <div class="form-group img-inputs">
+                </div>
+                <div class="form-group">
+                  <div id="upload"></div>
+                  <p class="help-block">可上传5张图片每个附件大小不得超过2M。附件支持的格式有：'jpg', 'bmp', 'png', 'gif','txt','rar','zip','doc','docx','ini','conf','eml'</p>
+                </div>
+              </div>
+              {{ form_csrf_token() }}
+              <div class="box-footer">
+                <button id="customer-reply" type="submit" class="btn btn-primary" data-url="
+            {% if ticket.status == 'waiting' or ticket.status == 'processing' %}
+              {{ path('customer_ticket_supplement', {id:ticket.id}) }}
+            {% elseif ticket.status == 'tickling' %}
+              {{ path('customer_ticket_asked', {id:ticket.id}) }}
+            {% elseif ticket.status == 'confirmed' %}
+              {# 评价路由 #}
+            {% elseif ticket.status == 'appraising' %}
+              {# 空路由 #}
+            {% elseif ticket.status == 'closed' %}
+              {# 空路由 #}
+            {% endif %}">提交</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+</div>

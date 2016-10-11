@@ -1,0 +1,54 @@
+<!-- 模态框（Modal） -->
+<div tabindex="-1" role="dialog" 
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" 
+          data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          修改类型
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form  class="form-horizontal" action="{{ path('admin_category_update',{id:category.id}) }}" method="POST" accept-charset="utf-8" id="updateCategoryForm">
+          <div class="form-group">
+            <label for="priority" class="col-sm-2 control-label">优先级</label>
+            <div class="col-sm-10">
+              <select name="priority" class="form-control" >
+                <option value="{{category.priority}}">{{ dict_text('ticketPriority:html', category.priority) }}</option>
+                {{ select_options(dict('ticketPriority')) }}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">类型名</label>
+            <div class="col-sm-10">
+              <input id="name" name="name" type="text" class="form-control" value="{{ category.name }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="delayedTime" class="col-sm-2 control-label">滞留时间</label>
+            <div class="col-sm-10">
+              <input id="delayedTime" name="delayedTime" type="text" class="form-control" value="{{ category.delayedTime }}">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger delete-category pull-left" data-url="{{ path('admin_category_delete', {id:category.id})}}">删除<i class="fa fa-bitbucket"></i></button>
+            <button type="button" class="btn btn-default" 
+            data-dismiss="modal">关闭
+            </button>
+            <button id="update" data-id="{{category.id}}"  type="button" class="btn btn-primary">
+            确认修改
+            </button>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<script src="{{ asset('assets/libs/validator/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('assets/libs/validator/messages_cn.js') }}"></script>
+<script src="{{ asset('assets/js/admin/category/validate-update-category-form.js') }}"></script>

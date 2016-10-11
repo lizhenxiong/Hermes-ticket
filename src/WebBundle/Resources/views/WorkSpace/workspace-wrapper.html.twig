@@ -1,0 +1,19 @@
+<div style="min-height: 916px;" class="content-wrapper">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">我的工作台</h3>
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 90px;">
+              <span><i class="description-percentage text-green" id="clock">0</i>秒前刷新</span>
+            </div>
+          </div>
+        </div>
+        <div id="workspace-assigned-ticket" class="box box-primary" data-url="{{ path('workspace_assigned_ticket', {userId:user.id}) }}"></div>
+        <div id="workspace-delayed-ticket" class="box box-primary" data-url="{{ path('workspace_delayed_ticket') }}"></div>
+        <div id="workspace-unassigned-ticket" class="box box-primary" data-url="{{ path('workspace_unassigned_ticket') }}"></div>
+      </div>
+    </div>
+  </div>
+</div>

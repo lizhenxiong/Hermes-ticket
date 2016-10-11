@@ -1,0 +1,96 @@
+<div class="content-wrapper" style="min-height: 1036px;">
+  <div class="row">
+    <div class="col-md-10" style="margin: 0px;">
+    <section class="content-header">
+      <div class="alert bg-gray disabled color-palette">
+        <h4>工单详情</h4>
+          <div class="row">
+            <div class="col-md-3">
+              <span>标题：</span> <label>{{ ticket.title|default() }}</label>
+            </div>
+            <div class="col-md-3">
+               <span>工单编号：</span><label>{{ ticket.ticketNo|default() }}</label>
+            </div>
+            {% if role == "service" %}
+              <div class="col-md-3">
+                <span>用户电话 : <label>{{ ticket.phone|default() }}</label></span>
+              </div>
+            {% endif %}
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <span>提交时间：</span><label>{{ ticket.created|date('Y-m-d H:i:s')}}</label>
+            </div>
+            <div class="col-md-3">
+              <span>状态：</span><label class="label label-info">{{ dict_text('ticketStatus', ticket.status) }}</label>
+            </div>
+            <div class="col-md-2"></div>
+
+            <div class="col-md-3">
+              {% if role == 'customer' %}
+                {% if ticket.status != 'closed' %}
+                  <span class="btn btn-danger btn-xs ticket-close" data-url="{{ path('customer_ticket_close', {id:ticket.id}) }}">关闭工单</span>
+                {% endif %}
+                <span data-toggle="modal" data-target="#myModal1" class="btn btn-warning btn-xs complaint-btn" data-url="{{ path('customer_ticket_complaint', {id:ticket.id}) }}">一键投诉</span>
+                {% if ticket.status == 'confirmed' or ticket.status == 'closed' %}
+                  <span data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-xs evaluate-btn" data-url="{{ path('customer_ticket_review', {id:ticket.id}) }}">评价</span>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <!-- row -->
+      <div class="row">
+          <!-- The time line -->
+          <ul class="timeline">
+            <!-- timeline time label -->
+            <li class="time-label">
+                  <span class="bg-red">
+                    {{ ticket.created|date('Y-M-d') }}
+                  </span>
+            </li>
+              {% for ticketItem in ticketItems %}
+                {% if role == 'customer' %}
+                  {% if ticketItem.type == 'complaint' %}
+                    {% include 'WebBundle:TimeLine:customer-timeline-complaint.html.twig' %}
+                  {% elseif ticketItem.type == 'review' %}
+                    {% include 'WebBundle:TimeLine:customer-timeline-review.html.twig' %}
+                  {% elseif ticketItem.type == 'receive' %}
+                    {% include 'WebBundle:TimeLine:customer-timeline-undertake.html.twig' %}
+                  {% elseif ticketItem.type == 'distribute' or ticketItem.type == 'transfer' %}
+                    {% include 'WebBundle:TimeLine:customer-timeline-distribute.html.twig' %}
+                  {% else %}
+                    {% include 'WebBundle:TimeLine:timeline-customer.html.twig' %}
+                  {% endif %}
+                {% endif %}
+                {% if role == 'service' %}
+                  {% if ticketItem.type == 'receive' %}
+                    {% include 'WebBundle:TimeLine:operator-timeline-undertake.html.twig' %}
+                  {% elseif ticketItem.type == 'distribute' or ticketItem.type == 'transfer' %}
+                    {% include 'WebBundle:TimeLine:operator-timeline-distribute.html.twig' %}
+                  {% else %}
+                    {% include 'WebBundle:TimeLine:timeline-operator.html.twig' %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            <li>
+              <i class="fa fa-clock-o bg-gray"></i>
+            </li>
+          </ul>
+        </div>
+    </section>
+    </div>
+
+    <section class="col-md-2" style="margin-top: 10px; margin-left: -20px;">
+      {% if role == 'service' %}
+        {% include 'WebBundle:Ticket:similar-ticket.html.twig' %}
+      {% endif %}
+    </section>
+  </div>
+</div>
+<div class="modal" id="complaintModal"></div>
+<div class="modal" id="evaluateModal"></div>

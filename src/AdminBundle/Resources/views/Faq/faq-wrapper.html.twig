@@ -1,0 +1,84 @@
+<div style="min-height: 916px;" class="content-wrapper">
+<div class="row">
+    <div class="col-xs-12">
+      <div class="box" style="border-top:0px;border-radius:0px;">
+        <div class="box-header" style="margin-bottom:10px;">
+          <h3 class="box-title">常见问题模板</h3>
+          <div class="box-tools">
+            <div class="input-group input-group-sm" style="width: 90px;">
+              <a class="btn btn-success" href="{{ path('admin_faq_create') }}"  ><span>添加模板</span></a>
+            </div>
+          </div>
+        </div>
+        <form id="user-search-form" class="form-inline well well-sm" action="{{path('admin_faq_list')}}" method="get" novalidate="" style="border-radius:0px;">
+          <div class="form-group">
+            <input name="id" class="form-control" value="{{app.request.query.get('id')}}" placeholder="编号" type="text">
+          </div>
+          <div class="form-group">
+            <select name="category" class="form-control" >
+              <option value="">--问题类型--</option>
+              {% for category in categorys %}
+              <option value="{{ category.id }}"{% if app.request.query.get('category') ==  category.id %} selected="selected" {% endif %}>{{ category.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <input name="question" class="form-control" value="{{app.request.query.get('question')}}" placeholder="问题标题" type="text">
+          </div>
+          <button class="btn btn-primary">搜索</button>
+        </form>
+        <div class="box-body table-responsive no-padding">
+          <table id="assignedTable" class="table table-hover js-table">
+            <thead >
+              <tr>
+                <th>编号</th>
+                <th>问题类型</th>
+                <th>问题标题</th>
+                <th>附件</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              {% for faq in faqs %}
+              <tr id="{{faq.id}}">
+                <td>{{ faq.id }}</td>
+                <td>
+                {% set category = data('Category', {id:faq.category}) %}
+                {{ category.name|default() }}
+                </td>
+                <td>{{ faq.question }}</td>
+                <td> 
+                  <ul id="attachment-preview-{{faq.id}}" class="attachment-preview">
+                    {% if faq.attachment1 %}
+                      <li><img data-original="{{ asset(faq.attachment1) }}" src="{{ asset(faq.attachment1) }}"/></li>
+                    {% endif %}
+                    {% if faq.attachment2 %}
+                      <li><img data-original="{{ asset(faq.attachment2) }}" src="{{ asset(faq.attachment2) }}"/></li>
+                    {% endif %}
+                    {% if faq.attachment3 %}
+                      <li><img data-original="{{ asset(faq.attachment3) }}" src="{{ asset(faq.attachment3) }}"/></li>
+                    {% endif %}
+                    {% if faq.attachment4 %}
+                      <li><img data-original="{{ asset(faq.attachment4) }}" src="{{ asset(faq.attachment4) }}"/></li>
+                    {% endif %}
+                    {% if faq.attachment5 %}
+                      <li><img data-original="{{ asset(faq.attachment5) }}" src="{{ asset(faq.attachment5) }}"/></li>
+                    {% endif %}
+                  </ul>
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-success" href="{{ path('admin_faq_update', {id:faq.id}) }}"><span>编辑</span></a>
+                  <button type="button" class="btn btn-sm btn-success js-delete-btn"  data-url="{{ path('admin_faq_delete', {id:faq.id})}}" data-id="{{faq.id}}">删除</button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {{ admin_macro.paginator(paginator) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modal"></div>
+<script type="text/javascript" src="{{asset('assets/js/admin/faq/delete.js')}}"></script>

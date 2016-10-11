@@ -1,0 +1,21 @@
+{% extends "AdminBundle:Default:layout.html.twig" %}
+
+{% block title %}后台{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/upload/css/webuploader.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/upload/css/HermesUpload.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ asset('assets/libs/validator/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/validator/messages_cn.js') }}"></script>
+  <script src="{{ asset('assets/libs/upload/js/webuploader.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/upload/js/HermesUpload.js') }}"></script>
+  <script src="{{ asset('assets/js/admin/faq/update-faq.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+  {% include 'AdminBundle:Faq:update-faq-wrapper.html.twig' %}
+{% endblock %}

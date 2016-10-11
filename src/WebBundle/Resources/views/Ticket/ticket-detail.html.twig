@@ -1,0 +1,45 @@
+{% extends "WebBundle:Default:layout.html.twig" %}
+
+{% block title %}工单详情{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/upload/css/webuploader.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/upload/css/HermesUpload.css') }}">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/viewer/css/viewer.min.css') }}">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/grade/css/zzsc.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/grade/starability-minified/starability-growRotate.min.css') }}">
+
+
+  <style>
+    .attachment-preview li {
+      display: inline-block; 
+      width: 20%; 
+      margin-left: 1%; 
+      padding-top: 1%;
+    }
+    .attachment-preview li img { 
+      width: 100%;
+    }
+
+    #upload div{
+      height: 40px;
+      width: 86px;
+    }
+  </style>
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/libs/upload/js/webuploader.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/upload/js/HermesUpload.js') }}"></script>
+
+  <script src="{{ asset('assets/libs/viewer/js/viewer.min.js') }}"></script>
+
+  <script src="{{ asset('assets/js/web/ticket/detail.js') }}"></script>
+{% endblock %}
+
+
+{% block wrapper %}
+  {% include 'WebBundle:Ticket:ticket-detail-wrapper.html.twig' %}
+{% endblock %}

@@ -1,0 +1,52 @@
+<div class="nav navbar-nav" style="margin: 0px; width: 170px;">
+  <div class="box box-warning box-solid collapsed-box">
+    <div class="box-header with-border">
+      <h3 class="box-title">相同类型工单</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+          </button>
+        </div>
+    </div>
+    <div class="box-body" style="display: none;">
+      <ul class="nav nav-pills nav-stacked longcontent">
+        {% for sameCategoryTicket in sameCategoryTickets %}
+          <li><a href="{{ path('operator_ticket_detail',{id:sameCategoryTicket.id}) }}">{{sameCategoryTicket.title}}</a></li>
+        {% endfor %}
+        <li class="footer text-center" style="display: block; style="font-size: 13px;""><a href="{{path('same_category_ticket',{category:category})}}" class="uppercase">查看全部</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="box box-info box-solid collapsed-box">
+    <div class="box-header with-border">
+      <h3 class="box-title">用户历史工单</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+          </button>
+        </div>
+    </div>
+    <div class="box-body" style="display: none;">
+      <ul class="nav nav-pills nav-stacked longcontent">
+        {% for otherTicket in otherTickets %}
+          <li><a href="{{ path('operator_ticket_detail',{id:otherTicket.id}) }}">{{otherTicket.title}}</a></li>
+        {% endfor %}
+        <li class="footer text-center" style="display: block; style="font-size: 13px;""><a href="{{path('other_ticket',{userId:userId})}}" class="uppercase">查看全部</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="dropdown notifications-menu open" style="width: 170px; position: fixed; ">
+    <div class="box box-success box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">FAQ</h3>
+      </div>
+      <div class="box-body no-padding" style="display: block; height: 200px; overflow: auto;">
+        <ul class="nav nav-pills nav-stacked longcontent">
+        {% for faq in faqs %}
+          <li><a type="button" class="faq-auto-reply" data-url="{{ path('operator_ticket_autoReply', {ticketId:ticket.id, faqId:faq.id}) }}">{{faq.question}}</a></li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ asset('assets/js/web/ticket/similarticket.js') }}"></script>

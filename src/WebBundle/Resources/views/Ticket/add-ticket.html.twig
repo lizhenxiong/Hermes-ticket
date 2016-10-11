@@ -1,0 +1,34 @@
+{% extends "WebBundle:Default:layout.html.twig" %}
+
+{% block title %}新增工单{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/upload/css/webuploader.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/upload/css/HermesUpload.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/viewer/css/viewer.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+
+<style>
+.test-preview li { display: inline-block; width: 20%; margin-left: 1%; padding-top: 1%;}
+.test-preview li img { width: 100%;}
+</style>
+
+{% endblock %}
+
+{% block javascripts %}
+  <script src="{{ asset('assets/libs/validator/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/validator/messages_cn.js') }}"></script>
+
+  <script src="{{ asset('assets/libs/upload/js/webuploader.min.js') }}"></script>
+  <script src="{{ asset('assets/libs/upload/js/HermesUpload.js') }}"></script>
+  
+  <script src="{{ asset('assets/libs/datetimepicker/js/bootstrap-datetimepicker.js') }}"></script>
+  <script src="{{ asset('assets/libs/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js') }}"></script>
+
+  <script src="{{ asset('assets/js/web/ticket/addticket.js') }}"></script>
+{% endblock %}
+
+{% block wrapper %}
+  {% include 'WebBundle:Ticket:add-ticket-wrapper.html.twig' %}
+{% endblock %}
+ 

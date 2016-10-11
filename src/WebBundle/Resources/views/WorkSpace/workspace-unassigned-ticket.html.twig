@@ -1,0 +1,50 @@
+  <div class="row">
+  <div class="col-xs-12">
+    <div class="box" style="border-top:0px;border-radius:0px;">
+      <div class="box-header">
+        <h3 class="box-title">未分配工单</h3>
+      </div>
+      <div class="box-body table-responsive no-padding">
+        <table id="assignedTable" class="table table-hover js-table">
+          <thead >
+            <tr>
+              <th>编号</th>
+              <th width="40%">标题</th>
+              <th width="10%">工单类型</th>
+              <th style="text-align:center;">工单发起人</th>
+              <th>优先级</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody class="list">
+              {% for ticket in tickets %}
+                <tr>
+                  <td>{{ ticket.ticketNo }}</td>
+                  <td class="mailbox-name" width="40%">
+                    <a href="{{ path('operator_ticket_detail',{id:ticket.id}) }}">{{ ticket.title }}</a>
+                  </td>
+                  <td width="10%">
+                    {% set category = data('Category', {id:ticket.category}) %}
+                    {{ category.name }}
+                  </td>
+                  <td style="text-align:center;">
+                    {% set userInfo = data('User', {userId:ticket.userId}) %}{{ userInfo.username|default() }}<h5><small>{{ ticket.created|date('Y-m-d H:i:s') }}</small></h5>
+                  </td>
+                  <td>{{ dict_text('ticketPriority:html', ticket.priority) }}</td>
+                  <td class="mailbox-date">
+                    {{ dict_text('ticketStatus', ticket.status) }}
+                  </td>
+                </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+          <div class="col-md-4"></div>
+          <div class=" pull-right" >
+            <a href="{{ path('ticket_unassigned_list') }}" class="">更多...</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ asset('assets/js/web/ticket/longcontent.js') }}"></script>

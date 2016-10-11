@@ -1,0 +1,40 @@
+{% import 'AdminBundle::macro.html.twig' as admin_macro %}
+
+<!DOCTYPE html>  
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="{{ csrf_token(default_csrf_token_id) }}" name="csrf-token"/>
+    <script src="{{ asset('assets/js/vendor.js') }}"></script>
+    <script src="{{ asset('assets/js/global.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendor.css') }}">
+    {% block head %}
+      <title>{% block title %}{% endblock %} - 工单系统</title>
+      {% block stylesheets %}
+      {% endblock %}
+      {% block javascripts %}
+      {% endblock %}
+    {% endblock %}
+  </head>
+  <body class="hold-transition skin-green-light sidebar-mini">
+    <div class="wrapper">
+      {% block content %}
+        {% block header %}
+          {% include 'AdminBundle:Default:index-header.html.twig' %}
+        {% endblock %}
+        {% block body %}
+          {% block sidebar %}
+            {% include 'AdminBundle:Default:index-sidebar.html.twig'%}
+          {% endblock %}
+          {% block wrapper %}
+            {% include 'WebBundle:Default:layout-wrapper.html.twig' %}
+          {% endblock %}
+        {% endblock %}
+        {% block footer %}
+        {% endblock %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
