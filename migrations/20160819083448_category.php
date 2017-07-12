@@ -12,6 +12,7 @@ class Category extends Migration
         $container = $this->getContainer();
         $table = new Doctrine\DBAL\Schema\Table('category');
         $table->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement'=> true));
+        $table->addColumn('parentId', 'integer', array('default' => 0));
         $table->addColumn('priority', 'integer', array('length' => 10, 'null' => false, 'default' => 0,'comment' => '优先级'));
         $table->addColumn('name', 'string', array('length' => 255,'null' => false, 'default' => '', 'comment' => '类型名'));
         $table->addColumn('delayedTime', 'integer', array('length' => 10, 'null' => false, 'default' => 0, 'comment' => '滞留时间'));
