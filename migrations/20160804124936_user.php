@@ -12,7 +12,7 @@ class User extends Migration
         $container = $this->getContainer();
         $table = new Doctrine\DBAL\Schema\Table('user');
         $table->addColumn('id', 'integer', array('unsigned' => true, 'autoincrement'=> true));
-        $table->addColumn('nickname', 'string', array('length' => 255, 'null' => false, 'comment' => '用户名'));
+        $table->addColumn('username', 'string', array('length' => 255, 'null' => false, 'comment' => '用户名'));
         $table->addColumn('phone', 'string', array('length' => 32, 'null' => false, 'comment' => '联系电话'));
         $table->addColumn('email', 'string', array('length' => 128, 'null' => false, 'comment' => '邮箱'));
         $table->addColumn('smallAvatar', 'string', array('length' => 255));
