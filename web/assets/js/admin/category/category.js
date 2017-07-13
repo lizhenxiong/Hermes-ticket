@@ -38,7 +38,7 @@ $(document).ready(function(){
     });
 
     $('body').on('click', '.delete-category', function(){
-        if (!confirm('确定要删除该分类及其子分类吗?')) {
+        if (!confirm('确定要删除该分类?')) {
             return;
         };
         var url = $(this).data('url');

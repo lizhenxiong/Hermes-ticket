@@ -58,11 +58,25 @@ class CategoryController extends BaseController
     public function listAction(Request $request)
     {
         $conditions = $request->query->all();
-        $categories = $this->getCategoryService()->getCategoryStructureTree();
-        $otherCategorys = $this->getCategoryService()->findCategories();
+
+        $count = $this->getCategoryService()->searchCategoryCount($conditions);
+
+        $paginator = new Paginator(
+            $request,
+            $count,
+            20
+        );
+
+        $categories = $this->getCategoryService()->searchCategorys(
+            $conditions,
+            array('id', 'ASC'),
+            $paginator->getOffsetCount(),
+            $paginator->getPerPageCount()
+        );
+
         return $this->render('AdminBundle:Category:category-list.html.twig',array(
             'categories' => $categories,
-            'otherCategorys' => $otherCategorys
+//            'otherCategorys' => $otherCategorys
         ));
     }
 

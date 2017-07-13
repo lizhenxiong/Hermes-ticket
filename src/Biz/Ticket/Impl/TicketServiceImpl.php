@@ -23,11 +23,11 @@ class TicketServiceImpl extends KernelAwareBaseService implements TicketService
         $ticketItem = array(
             'about' => $ticket['about'],
             'role' => 'customer',
-            'attachment1' => isset($ticket['attachment1'])?$ticket['attachment1']: null,
-            'attachment2' => isset($ticket['attachment2'])?$ticket['attachment2']: null,
-            'attachment3' => isset($ticket['attachment3'])?$ticket['attachment3']: null,
-            'attachment4' => isset($ticket['attachment4'])?$ticket['attachment4']: null,
-            'attachment5' => isset($ticket['attachment5'])?$ticket['attachment5']: null
+            'attachment1' => isset($ticket['attachment1'])?$ticket['attachment1']: '',
+            'attachment2' => isset($ticket['attachment2'])?$ticket['attachment2']: '',
+            'attachment3' => isset($ticket['attachment3'])?$ticket['attachment3']: '',
+            'attachment4' => isset($ticket['attachment4'])?$ticket['attachment4']: '',
+            'attachment5' => isset($ticket['attachment5'])?$ticket['attachment5']: ''
         );
 
         $ticket = ArrayToolkit::parts($ticket, array('userId', 'type', 'category', 'title', 'about', 'email', 'phone', 'priority' ,'delayedTime'));
@@ -311,11 +311,11 @@ class TicketServiceImpl extends KernelAwareBaseService implements TicketService
             'about' => $faq['answer'],
             'role' => 'service',
             'ticketId' => $ticketId,
-            'attachment1' => isset($faq['attachment1'])?$faq['attachment1']: null,
-            'attachment2' => isset($faq['attachment2'])?$faq['attachment2']: null,
-            'attachment3' => isset($faq['attachment3'])?$faq['attachment3']: null,
-            'attachment4' => isset($faq['attachment4'])?$faq['attachment4']: null,
-            'attachment5' => isset($faq['attachment5'])?$faq['attachment5']: null,
+            'attachment1' => isset($faq['attachment1'])?$faq['attachment1']: '',
+            'attachment2' => isset($faq['attachment2'])?$faq['attachment2']: '',
+            'attachment3' => isset($faq['attachment3'])?$faq['attachment3']: '',
+            'attachment4' => isset($faq['attachment4'])?$faq['attachment4']: '',
+            'attachment5' => isset($faq['attachment5'])?$faq['attachment5']: '',
             'type' => 'reply'
         );
 
@@ -406,7 +406,7 @@ class TicketServiceImpl extends KernelAwareBaseService implements TicketService
 
     public function findItemsWithService($ticketId)
     {
-        return $this->getTicketItemDao()->findItemsWithService($ticketId);
+        return $this->getTicketItemDao()->searchItemsWithService($ticketId);
     }
 
     public function findTicketsByCategory($category)

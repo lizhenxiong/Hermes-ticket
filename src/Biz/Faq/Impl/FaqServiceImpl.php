@@ -26,11 +26,11 @@ class FaqServiceImpl extends KernelAwareBaseService implements FaqService
             throw new \Exception('问题标题名称已存在,请更换!');
         }
 
-        $faq['attachment1'] = isset($faq['attachment1'])?$faq['attachment1']: null;
-        $faq['attachment2'] = isset($faq['attachment2'])?$faq['attachment2']: null;
-        $faq['attachment3'] = isset($faq['attachment3'])?$faq['attachment3']: null;
-        $faq['attachment4'] = isset($faq['attachment4'])?$faq['attachment4']: null;
-        $faq['attachment5'] = isset($faq['attachment5'])?$faq['attachment5']: null;
+        $faq['attachment1'] = isset($faq['attachment1'])?$faq['attachment1']: '';
+        $faq['attachment2'] = isset($faq['attachment2'])?$faq['attachment2']: '';
+        $faq['attachment3'] = isset($faq['attachment3'])?$faq['attachment3']: '';
+        $faq['attachment4'] = isset($faq['attachment4'])?$faq['attachment4']: '';
+        $faq['attachment5'] = isset($faq['attachment5'])?$faq['attachment5']: '';
         return $this->getFaqDao()->create($faq);
     }
 

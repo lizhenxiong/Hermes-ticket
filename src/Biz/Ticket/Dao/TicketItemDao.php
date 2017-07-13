@@ -5,5 +5,5 @@ interface TicketItemDao
 {
     public function getItemsByTicketId($ticketId);
 
-    public function findItemsWithService($ticketId);
+    public function searchItemsWithService($ticketId);
 }

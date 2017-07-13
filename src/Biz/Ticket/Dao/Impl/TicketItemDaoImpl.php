@@ -14,7 +14,7 @@ class TicketItemDaoImpl extends GeneralDaoImpl implements TicketItemDao
         return $this->db()->fetchAll($sql, array($ticketId)) ?: null;
     }
 
-    public function findItemsWithService($ticketId)
+    public function searchItemsWithService($ticketId)
     {
         $sql = "SELECT * FROM {$this->table()} WHERE ticketId = ? and type != 'complaint'";
         return $this->db()->fetchAll($sql, array($ticketId)) ?: null;
