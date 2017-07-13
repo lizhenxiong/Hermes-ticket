@@ -39,11 +39,11 @@ class FaqServiceImpl extends KernelAwareBaseService implements FaqService
         unset($fields['file']);
         $existFaq = $this->getFaq($id);
 
-        $fields['attachment1'] = isset($fields['attachment1'])?$fields['attachment1']: null;
-        $fields['attachment2'] = isset($fields['attachment2'])?$fields['attachment2']: null;
-        $fields['attachment3'] = isset($fields['attachment3'])?$fields['attachment3']: null;
-        $fields['attachment4'] = isset($fields['attachment4'])?$fields['attachment4']: null;
-        $fields['attachment5'] = isset($fields['attachment5'])?$fields['attachment5']: null;
+        $fields['attachment1'] = isset($fields['attachment1'])?$fields['attachment1']: '';
+        $fields['attachment2'] = isset($fields['attachment2'])?$fields['attachment2']: '';
+        $fields['attachment3'] = isset($fields['attachment3'])?$fields['attachment3']: '';
+        $fields['attachment4'] = isset($fields['attachment4'])?$fields['attachment4']: '';
+        $fields['attachment5'] = isset($fields['attachment5'])?$fields['attachment5']: '';
 
         if (empty($existFaq)) {
             throw new \Exception('FAQ不存在!');
