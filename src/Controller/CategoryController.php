@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Category;
+use App\Service\CategoryService;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
@@ -11,6 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends FOSRestController
 {
+    private $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
     /**
      * Create a Category resource
      * @Rest\Post("/categories")
@@ -19,18 +27,16 @@ class CategoryController extends FOSRestController
      */
     public function postCategory(Request $request): View
     {
-        $entityManage = $this->getDoctrine()->getManager();
-
-        $category = new Category();
-        $category->setName($request->get('name'));
-        $category->setDelayedTime($request->get('delayedTime'));
-        $category->setPriority($request->get('priority'));
-        $category->setParentId($request->get('parentId'));
-        $category->setCreatedTime(time());
-        $category->setUpdatedTime(time());
-
-        $entityManage->persist($category);
-        $entityManage->flush();
+        $category = $this->categoryService->createCategory(
+            array(
+                'name' => $request->get('name'),
+                'delayedTime' => $request->get('delayedTime'),
+                'priority' => $request->get('priority'),
+                'parentId' => $request->get('parentId'),
+                'createdTime' => time(),
+                'updatedTime' => time(),
+            )
+        );
 
         return View::create($category, Response::HTTP_CREATED);
     }
@@ -41,37 +47,27 @@ class CategoryController extends FOSRestController
      */
     public function putCategory(int $categoryId, Request $request): View
     {
-        $entityManage = $this->getDoctrine()->getManager();
-        $category = $entityManage->getRepository(Category::class)->find($categoryId);
-
-        if (!$category) {
-            throw $this->createNotFoundException(
-                'No category found for id '.$categoryId
-            );
-        }
-
-        $category->setName($request->get('name'));
-        $category->setDelayedTime($request->get('delayedTime'));
-        $category->setPriority($request->get('priority'));
-        $category->setParentId($request->get('parentId'));
-        $category->setUpdatedTime(time());
-
-        $entityManage->flush();
+        $category = $this->categoryService->updateCategory(
+            $categoryId,
+            array(
+                'name' => $request->get('name'),
+                'delayedTime' => $request->get('delayedTime'),
+                'priority' => $request->get('priority'),
+                'parentId' => $request->get('parentId'),
+                'updatedTime' => time(),
+            )
+        );
 
         return View::create($category, Response::HTTP_OK);
     }
 
     /**
      * Remove the Category resource
-     * @Rest\Delete("categories/{categoryId}")
+     * @Rest\Delete("categories/{categoryId}", name="category_delete")
      */
     public function deleteCategory(int $categoryId): View
     {
-        $entityManage = $this->getDoctrine()->getManager();
-        $category = $entityManage->getRepository(Category::class)->find($categoryId);
-
-        $entityManage->remove($category);
-        $entityManage->flush();
+        $this->categoryService->deleteCategory($categoryId);
 
         return View::create([], Response::HTTP_NO_CONTENT);
     }
@@ -82,13 +78,7 @@ class CategoryController extends FOSRestController
      */
     public function getCategory(int $categoryId): View
     {
-        $category = $this->getDoctrine()->getRepository(Category::class)->find($categoryId);
-
-        if (!$category) {
-            throw $this->createNotFoundException(
-                'No category found for id '.$categoryId
-            );
-        }
+        $category = $this->categoryService->getCategory($categoryId);
 
         return View::create($category, Response::HTTP_OK);
     }
@@ -99,8 +89,7 @@ class CategoryController extends FOSRestController
      */
     public function findCategories(): View
     {
-        $repository = $this->getDoctrine()->getRepository(Category::class);
-        $projects = $repository->findAll();
+        $projects = $this->categoryService->findCategories();
 
         return View::create($projects, Response::HTTP_OK);
     }
