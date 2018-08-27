@@ -1,0 +1,1 @@
+yarn encore dev-server --hot

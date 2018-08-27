@@ -47,13 +47,15 @@ class CategoryController extends FOSRestController
      */
     public function putCategory(int $categoryId, Request $request): View
     {
+        parse_str(file_get_contents('php://input'), $fields);
+
         $category = $this->categoryService->updateCategory(
             $categoryId,
             array(
-                'name' => $request->get('name'),
-                'delayedTime' => $request->get('delayedTime'),
-                'priority' => $request->get('priority'),
-                'parentId' => $request->get('parentId'),
+                'name' => $fields['name'],
+                'delayedTime' => $fields['delayedTime'],
+                'priority' => $fields['priority'],
+                'parentId' => $fields['parentId'],
                 'updatedTime' => time(),
             )
         );
